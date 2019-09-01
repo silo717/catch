@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Orders;
-use DateTime;
+use App\Traits\DateManipulation;
 
 class SummaryController extends Controller
 {
+    use DateManipulation;
+
     public function summaryData($orders) {
 
         foreach($orders as $order) {
@@ -37,7 +39,7 @@ class SummaryController extends Controller
                  /*  Send to Store */
                  $parameter = [
                      'order_id' => $order['order_id'],
-                     'order_datetime' =>  $this->convertDate($order['order_date'],'DBDate'),
+                     'order_datetime' =>  $this->convertDate($order['order_date'],'dbdate'),
                      'total_order_value' => $this->getTotalOrderValue($order['discounts'], $sum_price),
                      'average_unit_price' => $average_unit_price,
                      'distinct_unit_count' => $count_unique,
@@ -79,15 +81,6 @@ class SummaryController extends Controller
  
          return $total_order_discount;
      }
-
-    public function convertDate($inputDate, $convertTo) {
-        if($convertTo=='DBDate') {
-            $date = new DateTime($inputDate);
-            $result = $date->format('Y-m-d H:i:s');
-        }
-        return $result;
-
-    }
 
     public function store(array $parameter) {
         return Orders::insert($parameter);
