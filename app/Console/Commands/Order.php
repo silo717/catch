@@ -47,7 +47,7 @@ class Order extends Command
             $export = new ExportController();
             if($export->createCsv()) {
                 $this->info("2. Successfully Create a CSV Files");
-                $this->info("   File name : order.csv | located in storage folder");
+                $this->info("   File name : orders.csv | located in storage/app folder");
             }
         
     }
