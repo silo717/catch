@@ -1,6 +1,6 @@
 ## Contact
 
-I'am Susilo Giono. E-mail : idsusilo[at]gmail[dot]com
+My name is Susilo Giono. E-mail : idsusilo[at]gmail[dot]com
 
 ## About this project
 
